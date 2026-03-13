@@ -1,0 +1,222 @@
+body.sketch-mode {
+  background: #faf8f4;
+  transition: background-color .45s ease-out;
+}
+body.sketch-mode .sb-page {
+  background: transparent;
+  filter: grayscale(1) contrast(1.04);
+  transition: background .45s ease-out, filter .45s ease-out;
+}
+body.sketch-mode .footer {
+  filter: grayscale(1) contrast(1.04);
+  transition: filter .45s ease-out;
+}
+body.sketch-mode::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9980;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+body.sketch-mode .proj-card,
+body.sketch-mode .photo-card {
+  box-shadow: 4px 4px 0 rgba(0,0,0,.18), 7px 7px 0 rgba(0,0,0,.08) !important;
+}
+body.sketch-mode .proj-card:hover,
+body.sketch-mode .photo-card:hover {
+  box-shadow: 6px 6px 0 rgba(0,0,0,.22), 10px 10px 0 rgba(0,0,0,.1) !important;
+}
+body.sketch-mode .photo-real {
+  filter: grayscale(1) contrast(1.2) brightness(.88) !important;
+}
+body.sketch-mode .photo-sketch-filter { opacity: 1 !important; }
+body.sketch-mode .photo-card:hover .photo-real {
+  filter: grayscale(1) contrast(1.2) brightness(.88) !important;
+}
+body.sketch-mode .photo-card:hover .photo-sketch-filter { opacity: 1 !important; }
+body.sketch-mode .card-art,
+body.sketch-mode #art-gaming,
+body.sketch-mode #art-churn,
+body.sketch-mode #art-ecom,
+body.sketch-mode #art-netflix {
+  background: #efefeb !important;
+}
+body.sketch-mode .proj-card-front::after { display: none; }
+body.sketch-mode .bar-fill      { background: #888 !important; }
+body.sketch-mode .l-bar-fill    { background: #aaa !important; }
+body.sketch-mode .sg-bar        { background: #999 !important; }
+body.sketch-mode .tag-dot {
+  background: #666 !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+body.sketch-mode .cursor-dot  { 
+  background: #1a1a1a !important;
+  transition: background .8s ease-out;
+  box-shadow: 0 0 12px rgba(0,0,0,.8), inset 0 0 4px rgba(255,255,255,.2);
+}
+body.sketch-mode .cursor-ring { 
+  border-color: #1a1a1a !important;
+  transition: border-color .8s ease-out;
+  box-shadow: 0 0 8px rgba(0,0,0,.5), inset 0 0 8px rgba(255,255,255,.05);
+}
+body.sketch-mode .sticky-yellow { background: #f5f5f0 !important; box-shadow: 3px 3px 6px rgba(0,0,0,.12) !important; }
+body.sketch-mode .sticky-blue   { background: #efefef !important; box-shadow: 3px 3px 6px rgba(0,0,0,.12) !important; }
+body.sketch-mode .sticky-green  { background: #f0f0ec !important; box-shadow: 3px 3px 6px rgba(0,0,0,.12) !important; }
+body.sketch-mode .learning-card {
+  background: #f5f5f0 !important;
+  border-color: rgba(0,0,0,.15) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.1) !important;
+}
+body.sketch-mode .skill-group {
+  background: rgba(255,255,255,.85) !important;
+  border-color: rgba(0,0,0,.15) !important;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.08) !important;
+}
+body.sketch-mode .skill-group:hover {
+  border-color: rgba(0,0,0,.25) !important;
+  box-shadow: 5px 5px 0 rgba(0,0,0,.1) !important;
+}
+body.sketch-mode .biz-card {
+  border-left-width: 2px !important;
+  background: #fafaf8 !important;
+}
+body.sketch-mode .nav-logo {
+  background: none !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  color: var(--ink) !important;
+}
+body.sketch-mode .astat-num {
+  background: none !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  color: var(--ink) !important;
+}
+body.sketch-mode .n2 {
+  color: var(--ink) !important;
+}
+body.sketch-mode .btn-ink    { box-shadow: 4px 4px 0 rgba(0,0,0,.2) !important; }
+body.sketch-mode .btn-outline { box-shadow: 4px 4px 0 rgba(0,0,0,.1) !important; }
+body.sketch-mode .mode-toggle { box-shadow: 3px 3px 0 rgba(0,0,0,.2) !important; }
+body.sketch-mode .mode-toggle:hover { box-shadow: 5px 5px 0 rgba(0,0,0,.2) !important; }
+body.sketch-mode .navbar,
+body.sketch-mode .mode-toggle {
+  background: rgba(248, 246, 240, 0.94) !important;
+  border-color: rgba(26,26,42,.16) !important;
+}
+body.sketch-mode #skills,
+body.sketch-mode #contact { background: transparent !important; }
+body.sketch-mode ::-webkit-scrollbar-thumb { background: #888 !important; }
+body.sketch-mode .heading-underline { color: rgba(0,0,0,.35) !important; }
+body.sketch-mode .section-doodle { color: rgba(26,26,42,.92) !important; opacity: .11 !important; }
+body.sketch-mode .contact-art { color: rgba(26,26,42,.92) !important; }
+body.sketch-mode .ink-splat { opacity: 0; }
+body.sketch-mode .washi-tape,
+body.sketch-mode .card-washi,
+body.sketch-mode .card-tape {
+  filter: grayscale(1) opacity(.4);
+}
+body.sketch-mode .proj-card,
+body.sketch-mode .photo-card,
+body.sketch-mode .sticky,
+body.sketch-mode .skill-group,
+body.sketch-mode .learning-card,
+body.sketch-mode .btn,
+body.sketch-mode .sb-page,
+body.sketch-mode .card-art,
+body.sketch-mode #art-gaming,
+body.sketch-mode #art-churn,
+body.sketch-mode #art-ecom,
+body.sketch-mode #art-netflix,
+body.sketch-mode .bar-fill,
+body.sketch-mode .l-bar-fill,
+body.sketch-mode .sg-bar,
+body.sketch-mode .tag-dot,
+body.sketch-mode .biz-card,
+body.sketch-mode .nav-logo,
+body.sketch-mode .astat-num,
+body.sketch-mode .n2,
+body.sketch-mode .mode-toggle,
+body.sketch-mode .heading-underline,
+body.sketch-mode .navbar,
+body.sketch-mode .section-doodle {
+  transition: background-color .45s ease-out, color .45s ease-out, border-color .45s ease-out, box-shadow .45s ease-out, filter .45s ease-out, background .45s ease-out, opacity .45s ease-out !important;
+}
+body.sketch-mode .pp-fill { background: #555 !important; }
+body.sketch-mode .pp-label { color: rgba(26,26,42,.45) !important; }
+body.sketch-mode .hero-underline { color: rgba(26,26,42,.35) !important; }
+body.sketch-mode .hero-ds-board { opacity: 0.18 !important; color: var(--ink) !important; }
+body.sketch-mode .proj-card-wip .proj-card-front-wip {
+  background: repeating-linear-gradient(
+    -45deg,
+    #fafaf8 0px, #fafaf8 10px,
+    #f4f4f0 10px, #f4f4f0 20px
+  ) !important;
+}
+body.sketch-mode .tag-wip { color: #777 !important; border-color: #777 !important; }
+body.sketch-mode .about-bottom-doodle { opacity: 0.65 !important; color: var(--ink) !important; }
+body.sketch-mode .section-bottom-doodle { opacity: 0.58 !important; color: var(--ink) !important; }
+body.sketch-mode .skills-doodle { color: var(--ink) !important; }
+body.sketch-mode .contact-bottom-doodle { color: var(--ink) !important; }
+body.sketch-mode .btn-resume {
+  color: var(--ink) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.1) !important;
+}
+body.sketch-mode .btn-resume:hover { box-shadow: 6px 6px 0 rgba(0,0,0,.15) !important; }
+body.sketch-mode .skills-doodle-strip { color: var(--ink); opacity: 0.42; }
+body.sketch-mode .contact-doodle-strip { color: var(--ink); opacity: 0.4; }
+body.sketch-mode .about-bottom-doodle { opacity: 0.45 !important; color: var(--ink) !important; }
+body.sketch-mode .section-bottom-doodle { opacity: 0.42 !important; }
+body.sketch-mode .bdoodle { color: var(--ink) !important; opacity: .22 !important; }
+body.sketch-mode .doodle-text { color: var(--ink) !important; opacity: .22 !important; }
+body.sketch-mode .sd-1, body.sketch-mode .sd-2,
+body.sketch-mode .sd-about, body.sketch-mode .sd-projects,
+body.sketch-mode .sd-contact {
+  color: var(--ink) !important; opacity: .22 !important;
+}
+body.sketch-mode .hero-ds-board { opacity: 0.2 !important; color: var(--ink) !important; }
+body.sketch-mode .journey-strip {
+  border-color: rgba(26,26,42,.1);
+  background: rgba(255,255,255,.3);
+}
+body.sketch-mode .journey-dot { border-color: var(--ink); background: var(--paper); }
+body.sketch-mode .journey-item-active .journey-dot { background: rgba(26,26,42,.3); border-color: var(--ink); box-shadow: none; }
+body.sketch-mode .journey-year { color: var(--ink-mid); }
+body.sketch-mode .looking-for-strip {
+  border-color: rgba(26,26,42,.2);
+  background: rgba(255,255,255,.2);
+}
+body.sketch-mode .looking-text strong { color: var(--ink); }
+body.sketch-mode .cf-submit {
+  background: var(--ink); color: var(--paper);
+  box-shadow: 3px 3px 0 rgba(0,0,0,.15);
+}
+.sketch-chart {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+.sketch-bar {
+    fill: #90cdf4;
+    stroke: #222;
+    stroke-width: 2;
+}
+.chart-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawLine 2s ease forwards;
+}
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.model-card {
+    border: 2px dashed #222;
+    padding: 20px;
+    margin-top: 20px;
+    background: #fffdf5;
+}
+.model-card h3 {
+    margin-bottom: 10px;
+}
