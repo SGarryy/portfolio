@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Engagement Analysis | Gaurav Singh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    const savedMode = localStorage.getItem('portfolio:mode');
+    document.documentElement.classList.add(savedMode === 'color' ? 'color-mode' : 'sketch-mode');
+  </script>
+  <style>
+    :root {
+      --paper: #f9f5ec;
+      --panel: rgba(255,255,255,.82);
+      --ink: #1a1a2a;
+      --muted: rgba(26,26,42,.62);
+      --line: rgba(26,26,42,.1);
+      --accent: #e8623a;
+      --green: #6baa75;
+      --blue: #4a90d9;
+      --gold: #e8c03a;
+      --accent-soft: rgba(255,255,255,.76);
+    }
+    .color-mode { --paper:#f7f2e8; --panel:rgba(255,255,255,.9); }
+    .sketch-mode { --accent:#1a1a2a; --green:#1a1a2a; --blue:#1a1a2a; --gold:#1a1a2a; }
+    *{box-sizing:border-box;}
+    html,body{margin:0;}
+    body{
+      font-family:"Nunito",sans-serif; color:var(--ink);
+      background:
+        radial-gradient(circle at top right, color-mix(in srgb,var(--accent) 8%,transparent), transparent 28%),
+        radial-gradient(circle at left bottom, rgba(26,26,42,.04), transparent 26%),
+        var(--paper);
+      transition:background .35s,color .35s;
+    }
+    .page{max-width:1080px;margin:0 auto;padding:80px 20px 80px;}
+
+    /* TOPBAR */
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+    .back{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:10px 18px;border:2px solid var(--ink);border-radius:999px;
+      text-decoration:none;color:inherit;
+      font-family:"JetBrains Mono",monospace;font-size:.76rem;
+      background:var(--accent-soft);box-shadow:4px 4px 0 rgba(26,26,42,.08);
+      transition:transform .15s,box-shadow .15s;
+    }
+    .back:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(26,26,42,.13);}
+    .eyebrow,.small,.label{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:18px;margin-top:4px;}
+    .panel{background:var(--panel);border:2px solid var(--line);border-radius:22px;box-shadow:8px 8px 0 rgba(26,26,42,.05);padding:26px;transition:transform .2s,box-shadow .2s;}
+    .panel:hover{transform:translateY(-2px);box-shadow:10px 12px 0 rgba(26,26,42,.07);}
+    h1{font-family:"Caveat",cursive;font-size:clamp(2.2rem,6vw,4rem);line-height:.95;margin:6px 0 14px;}
+    p{color:var(--muted);line-height:1.8;margin:0 0 10px;font-size:.93rem;}
+
+    /* KPI */
+    .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px;}
+    .kpi{background:rgba(26,26,42,.04);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;transition:transform .15s,box-shadow .15s;}
+    .kpi:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(26,26,42,.08);}
+    .kpi-num{font-family:"Caveat",cursive;font-size:1.8rem;font-weight:700;color:var(--accent);line-height:1;}
+    .kpi-desc{font-family:"JetBrains Mono",monospace;font-size:.58rem;color:var(--muted);margin-top:3px;}
+
+    /* TOOLKIT */
+    .toolkit-wrap{display:flex;flex-direction:column;gap:14px;}
+    .tg-label{font-family:"JetBrains Mono",monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;}
+    .pills{display:flex;flex-wrap:wrap;gap:6px;}
+    .pill{font-family:"JetBrains Mono",monospace;font-size:.63rem;padding:4px 10px;border-radius:999px;border:1.5px solid var(--line);color:var(--muted);background:rgba(255,255,255,.5);transition:transform .12s;}
+    .pill:hover{transform:scale(1.05);}
+    .pill.a{border-color:var(--accent);color:var(--accent);background:rgba(232,98,58,.06);}
+    .pill.g{border-color:var(--green);color:var(--green);background:rgba(107,170,117,.07);}
+    .pill.b{border-color:var(--blue);color:var(--blue);background:rgba(74,144,217,.07);}
+
+    /* SECTION TITLE */
+    .stitle{font-family:"Caveat",cursive;font-size:1.65rem;font-weight:700;margin:36px 0 14px;}
+
+    /* PERSONA GRID */
+    .persona-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+    .pc{background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:20px;box-shadow:6px 6px 0 rgba(26,26,42,.04);transition:transform .18s,box-shadow .18s;}
+    .pc:hover{transform:translateY(-3px);box-shadow:8px 10px 0 rgba(26,26,42,.07);}
+    .pc-name{font-family:"Caveat",cursive;font-size:1.18rem;font-weight:700;margin-bottom:6px;}
+    .ptag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.58rem;padding:3px 9px;border-radius:999px;margin-bottom:10px;}
+    .to{background:rgba(232,98,58,.1);color:var(--accent);border:1px solid rgba(232,98,58,.3);}
+    .tb{background:rgba(74,144,217,.1);color:var(--blue);border:1px solid rgba(74,144,217,.3);}
+    .tg{background:rgba(107,170,117,.1);color:var(--green);border:1px solid rgba(107,170,117,.3);}
+    .ty{background:rgba(232,192,58,.12);color:#b8922a;border:1px solid rgba(232,192,58,.4);}
+
+    /* STEPS */
+    .steps{display:flex;flex-direction:column;}
+    .step{display:flex;gap:14px;align-items:flex-start;}
+    .sline{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+    .sdot{width:30px;height:30px;border-radius:50%;background:rgba(232,98,58,.1);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--accent);font-weight:700;}
+    .scon{width:2px;flex:1;min-height:12px;background:var(--line);margin:3px 0;}
+    .sbody{padding-bottom:18px;flex:1;}
+    .stept{font-family:"JetBrains Mono",monospace;font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+    code{background:rgba(26,26,42,.06);padding:1px 6px;border-radius:4px;font-size:.7rem;color:var(--accent);font-family:"JetBrains Mono",monospace;}
+
+    /* CHART */
+    .chart-wrap{background:var(--panel);border:2px solid var(--line);border-radius:22px;box-shadow:8px 8px 0 rgba(26,26,42,.05);padding:22px 24px;overflow:hidden;}
+    .chart-title{font-family:"JetBrains Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:16px;}
+    .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+    /* BAR CHART */
+    .bar-chart{display:flex;flex-direction:column;gap:10px;}
+    .bar-row{display:flex;align-items:center;gap:10px;}
+    .bar-lbl{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted);width:90px;flex-shrink:0;text-align:right;}
+    .bar-bg{flex:1;height:22px;background:rgba(26,26,42,.05);border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+    .bar-fill{height:100%;border-radius:4px;transition:width .6s cubic-bezier(.25,.46,.45,.94);}
+    .bar-val{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted);width:36px;}
+
+    /* DONUT */
+    .donut-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+    .donut-legend{display:flex;flex-direction:column;gap:6px;width:100%;}
+    .dl-row{display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:.62rem;color:var(--muted);}
+    .dl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+    /* OUTCOMES */
+    .oc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    .oc{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:18px 16px;box-shadow:5px 5px 0 rgba(26,26,42,.04);transition:transform .18s,box-shadow .18s;}
+    .oc:hover{transform:translateY(-3px);box-shadow:7px 9px 0 rgba(26,26,42,.07);}
+    .oc-icon{font-size:1.4rem;margin-bottom:8px;}
+    .oc-title{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--accent);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em;}
+
+    /* GITHUB */
+    .github-wrap{margin-top:36px;}
+    .github-link{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);font-family:"JetBrains Mono",monospace;font-size:.76rem;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.7);box-shadow:4px 4px 0 rgba(26,26,42,.08);transition:transform .15s,box-shadow .15s;}
+    .github-link:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(26,26,42,.14);}
+
+    @media(max-width:820px){
+      .hero,.persona-grid,.oc-grid,.chart-grid{grid-template-columns:1fr;}
+      .kpi-row{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:480px){
+      .kpi-row{grid-template-columns:repeat(2,1fr);}
+      .bar-lbl{width:70px;font-size:.56rem;}
+    }
+  
+    /* FIXED BACK BUTTON */
+    .back-fixed{
+      position:fixed;top:22px;left:28px;z-index:9000;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 18px;border:2px solid var(--ink);border-radius:999px;
+      color:inherit;text-decoration:none;
+      font-family:"JetBrains Mono",monospace;font-size:.75rem;
+      background:rgba(249,245,236,0.94);backdrop-filter:blur(10px);
+      box-shadow:4px 4px 0 rgba(26,26,42,.1);
+      transition:padding .3s ease,box-shadow .15s,transform .15s;
+      overflow:hidden;white-space:nowrap;
+    }
+    .back-fixed:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(26,26,42,.14);}
+    .back-fixed .btn-arrow{flex-shrink:0;font-size:1rem;line-height:1;}
+    .back-fixed .btn-text{display:inline-block;max-width:160px;overflow:hidden;transition:max-width .35s ease,opacity .3s ease;opacity:1;}
+    .back-fixed.collapsed{padding:10px 13px;}
+    .back-fixed.collapsed .btn-text{max-width:0;opacity:0;}
+
+    /* SCROLL TO TOP */
+    .scroll-top{
+      position:fixed;bottom:28px;right:28px;z-index:9000;
+      width:44px;height:44px;border:2px solid var(--ink);border-radius:50%;
+      background:rgba(249,245,236,0.94);backdrop-filter:blur(10px);
+      box-shadow:4px 4px 0 rgba(26,26,42,.1);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:1.1rem;color:var(--ink);
+      transition:opacity .3s ease,transform .3s ease,box-shadow .15s;
+      opacity:0;transform:translateY(12px);pointer-events:none;font-family:inherit;
+    }
+    .scroll-top.visible{opacity:1;transform:translateY(0);pointer-events:all;}
+    .scroll-top:hover{transform:translateY(-2px);box-shadow:6px 6px 0 rgba(26,26,42,.14);}
+
+    </style>
+</head>
+<body>
+<main class="page">
+
+  <a class="back-fixed" id="backFixed" href="../index.html#projects"><span class="btn-arrow">←</span><span class="btn-text">Back to projects</span></a>
+  <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  
+  <div class="topbar" style="display:none"><a class="back" id="backLink" data-return-card="gaming" href="../index.html#projects">← Back to projects</a>
+    <div class="small">Project 01 · Unsupervised ML · K-Means</div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <article class="panel">
+      <div class="eyebrow">Project 01 — Behavioral Analytics</div>
+      <h1>Gaming Engagement Analysis</h1>
+      <p>Behavioral analysis of <strong>40,000+ user records</strong> from a cloud-based gaming platform. Used K-Means clustering to segment users into 4 actionable personas — enabling targeted retention strategies, infrastructure optimization, and smarter resource allocation.</p>
+      <p>Built as a production-grade modular pipeline with full unit testing via pytest. One-command execution via <code>demo.py</code>.</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-num">40K+</div><div class="kpi-desc">user records analyzed</div></div>
+        <div class="kpi"><div class="kpi-num">4</div><div class="kpi-desc">player personas found</div></div>
+        <div class="kpi"><div class="kpi-num">0%</div><div class="kpi-desc">null values post-validation</div></div>
+        <div class="kpi"><div class="kpi-num">k=4</div><div class="kpi-desc">optimal via elbow method</div></div>
+      </div>
+    </article>
+    <div class="toolkit-wrap">
+      <article class="panel" style="flex:1">
+        <div class="tg-label">Core Stack</div>
+        <div class="pills"><span class="pill a">Python 3.13</span><span class="pill a">Pandas</span><span class="pill a">Scikit-learn</span><span class="pill a">NumPy</span></div>
+        <div class="tg-label" style="margin-top:12px">Visualization</div>
+        <div class="pills"><span class="pill b">Matplotlib</span><span class="pill b">Seaborn</span></div>
+        <div class="tg-label" style="margin-top:12px">Pipeline & QA</div>
+        <div class="pills"><span class="pill g">pytest</span><span class="pill g">Modular src/</span><span class="pill g">StandardScaler</span></div>
+      </article>
+      <article class="panel" style="padding:16px 18px">
+        <div class="tg-label">Type</div>
+        <div class="pills" style="margin-top:4px"><span class="pill a">Unsupervised ML</span><span class="pill">K-Means</span><span class="pill">EDA</span><span class="pill">Segmentation</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <div class="stitle">Data at a Glance</div>
+  <div class="chart-grid">
+    <div class="chart-wrap">
+      <div class="chart-title">Cluster Size Distribution (% of 40K users)</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-lbl">Grinders</div><div class="bar-bg"><div class="bar-fill" style="width:22%;background:var(--accent)"></div></div><div class="bar-val">22%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Wknd Casuals</div><div class="bar-bg"><div class="bar-fill" style="width:31%;background:var(--blue)"></div></div><div class="bar-val">31%</div></div>
+        <div class="bar-row"><div class="bar-lbl">Social</div><div class="bar-bg"><div class="bar-fill" style="width:28%;background:var(--green)"></div></div><div class="bar-val">28%</div></div>
+        <div class="bar-row"><div class="bar-lbl">At-Risk</div><div class="bar-bg"><div class="bar-fill" style="width:19%;background:var(--gold)"></div></div><div class="bar-val">19%</div></div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Avg Session Hours by Persona</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-lbl">Grinders</div><div class="bar-bg"><div class="bar-fill" style="width:88%;background:var(--accent)"></div></div><div class="bar-val">8.8h</div></div>
+        <div class="bar-row"><div class="bar-lbl">Wknd Casuals</div><div class="bar-bg"><div class="bar-fill" style="width:42%;background:var(--blue)"></div></div><div class="bar-val">4.2h</div></div>
+        <div class="bar-row"><div class="bar-lbl">Social</div><div class="bar-bg"><div class="bar-fill" style="width:18%;background:var(--green)"></div></div><div class="bar-val">1.8h</div></div>
+        <div class="bar-row"><div class="bar-lbl">At-Risk</div><div class="bar-bg"><div class="bar-fill" style="width:8%;background:var(--gold)"></div></div><div class="bar-val">0.8h</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAS -->
+  <div class="stitle">User Personas Discovered</div>
+  <div class="persona-grid">
+    <article class="pc">
+      <div class="pc-name">⚔️ Hardcore Grinders</div>
+      <span class="ptag to">High Session Hours · High Milestones</span>
+      <p style="font-size:.84rem">Power users with the highest playtime and achievement rates. Strategy: allocate high-priority server bandwidth and premium progression rewards to retain this VIP segment.</p>
+    </article>
+    <article class="pc">
+      <div class="pc-name">🎉 Weekend Casuals</div>
+      <span class="ptag tb">Low Frequency · Moderate Sessions</span>
+      <p style="font-size:.84rem">Irregular players who engage in longer sessions when they do log in. Strategy: trigger "Weekend Warrior" event notifications to maximize their session windows.</p>
+    </article>
+    <article class="pc">
+      <div class="pc-name">🤝 Social Butterflies</div>
+      <span class="ptag tg">High Frequency · Short Sessions</span>
+      <p style="font-size:.84rem">Players who check in often but briefly — driven by social or competitive features. Strategy: prioritize low-latency multiplayer infrastructure for this segment.</p>
+    </article>
+    <article class="pc">
+      <div class="pc-name">⚠️ At-Risk / Idle</div>
+      <span class="ptag ty">Low Engagement Across All Metrics</span>
+      <p style="font-size:.84rem">Users showing disengagement across every dimension. Strategy: deploy automated re-engagement campaigns before full churn occurs.</p>
+    </article>
+  </div>
+
+  <!-- METHODOLOGY -->
+  <div class="stitle">Pipeline & Methodology</div>
+  <article class="panel" style="padding:24px 26px">
+    <div class="steps">
+      <div class="step"><div class="sline"><div class="sdot">01</div><div class="scon"></div></div><div class="sbody"><div class="stept">Feature Engineering & Schema Standardization</div><p style="font-size:.84rem">Renamed raw columns: <code>PlayTimeHours→session_duration_hr</code>, <code>SessionsPerWeek→weekly_frequency</code>, <code>AchievementsUnlocked→milestones_reached</code>.</p></div></div>
+      <div class="step"><div class="sline"><div class="sdot">02</div><div class="scon"></div></div><div class="sbody"><div class="stept">Data Validation — 40,000+ Records</div><p style="font-size:.84rem">Automated null detection, schema consistency, record count verification. Confirmed 0% null values before any modeling.</p></div></div>
+      <div class="step"><div class="sline"><div class="sdot">03</div><div class="scon"></div></div><div class="sbody"><div class="stept">Z-Score Normalization via StandardScaler</div><p style="font-size:.84rem">Applied before clustering — prevents any single feature from dominating cluster assignment due to scale differences.</p></div></div>
+      <div class="step"><div class="sline"><div class="sdot">04</div><div class="scon"></div></div><div class="sbody"><div class="stept">Elbow Method → Optimal k=4</div><p style="font-size:.84rem">Swept k from 2–10, plotted inertia. The elbow at k=4 was statistically clear before fitting the final model.</p></div></div>
+      <div class="step"><div class="sline"><div class="sdot">05</div><div class="scon"></div></div><div class="sbody"><div class="stept">K-Means Clustering & Model Persistence</div><p style="font-size:.84rem">Fitted K-Means (k=4) on normalized features. Saved model as <code>.pkl</code> to <code>/models/</code> for full reproducibility.</p></div></div>
+      <div class="step"><div class="sline"><div class="sdot">06</div></div><div class="sbody" style="padding-bottom:0"><div class="stept">Persona Profiling & Executive Reporting</div><p style="font-size:.84rem">Each cluster labeled, profiled, and translated into a concrete business recommendation with cluster charts and an executive summary.</p></div></div>
+    </div>
+  </article>
+
+  <!-- OUTCOMES -->
+  <div class="stitle">Business Impact</div>
+  <div class="oc-grid">
+    <article class="oc"><div class="oc-icon">🖥️</div><div class="oc-title">Infrastructure</div><p style="font-size:.82rem">Peak load times identified for Power User segments — directly usable for server allocation and capacity planning.</p></article>
+    <article class="oc"><div class="oc-icon">🔁</div><div class="oc-title">Churn Prevention</div><p style="font-size:.82rem">Framework to flag At-Risk users early — enabling proactive re-engagement before disengagement becomes permanent.</p></article>
+    <article class="oc"><div class="oc-icon">🎯</div><div class="oc-title">Targeted Marketing</div><p style="font-size:.82rem">Persona-specific reward structures — Grinders vs. Casuals respond to entirely different incentive types.</p></article>
+  </div>
+
+  <article class="panel" style="margin-top:16px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start">
+    <div style="font-size:1.3rem;flex-shrink:0">✅</div>
+    <div><div class="label" style="margin-bottom:3px">Quality Assurance</div><p style="font-size:.83rem;margin:0">Full test suite in <code>tests/test_pipeline.py</code>. Run with <code>pytest -v</code> or execute the entire pipeline via <code>python demo.py</code>.</p></div>
+  </article>
+
+  <div class="github-wrap">
+    <a class="github-link" href="https://github.com/SGarryy/gaming-engagement-analysis" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      View on GitHub
+    </a>
+  </div>
+
+</main>
+<script>
+  const backLink = document.getElementById('backLink');
+  if(backLink){
+    backLink.addEventListener('click',()=>{
+      const mode=document.documentElement.classList.contains('color-mode')?'color':'sketch';
+      localStorage.setItem('portfolio:mode',mode);
+      sessionStorage.setItem('portfolio:returnCard',backLink.dataset.returnCard);
+    });
+  }
+</script>
+
+  <script>
+    // Fixed back btn + scroll to top
+    (function(){
+      var btn = document.getElementById('backFixed');
+      var top = document.getElementById('scrollTop');
+      if(!btn||!top) return;
+      var link = document.getElementById('backLink');
+
+      function persistReturnState() {
+        var mode = document.documentElement.classList.contains('color-mode') ? 'color' : 'sketch';
+        localStorage.setItem('portfolio:mode', mode);
+        var returnCard = btn.dataset.returnCard || (link && link.dataset.returnCard) || '';
+        if (returnCard) {
+          sessionStorage.setItem('portfolio:returnCard', returnCard);
+        }
+      }
+
+      window.addEventListener('scroll', function(){
+        btn.classList.toggle('collapsed', window.scrollY > 60);
+        top.classList.toggle('visible', window.scrollY > 300);
+      }, {passive:true});
+      btn.addEventListener('click', persistReturnState);
+      top.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+      // preserve existing backLink behaviour
+      if(link){ btn.setAttribute('href', link.getAttribute('href')); btn.dataset.returnCard = link.dataset.returnCard||''; }
+    })();
+  </script>
+
+</body>
+</html>
